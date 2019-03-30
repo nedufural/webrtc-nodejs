@@ -28,7 +28,7 @@ $.ajax({
 
 socket.on('ONLINE_USERS_LIST', arrUserInfo => {
     $('#div-chat').show();
-    $('#div-dang-ky').hide();
+    $('#div-register').hide();
 
     arrUserInfo.forEach(user => {
         const { ten, peerId } = user;
@@ -45,7 +45,7 @@ socket.on('ONLINE_USERS_LIST', arrUserInfo => {
     });
 });
 
-socket.on('DANG_KY_THAT_BAT', () => alert('Vui long chon username khac!'));
+socket.on('REAL_SCENERIO', () => alert('Please enter another username!!!'));
 
 function openStream(){
   //get media resources
@@ -68,7 +68,7 @@ peer.on('open', id => {
     $('#my-peer').append(id);
     $('#btnSignUp').click(() => {
         const username = $('#txtUsername').val();
-        socket.emit('NGUOI_DUNG_DANG_KY', { ten: username, peerId: id });
+        socket.emit('FIRST_TIMER', { name: username, peerId: id });
     });
 });
 
